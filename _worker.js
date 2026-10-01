@@ -5,19 +5,19 @@ const pagesStaticUrl = 'https://edt-pages.github.io';
 
 async function serveStaticPage(pathname, env, request, status = 200) {
 	if (env?.ASSETS && typeof env.ASSETS.fetch === 'function') {
-		const cleanPath = pathname.startsWith('/') ? pathname : '/' + pathname;
-		const candidates = [cleanPath, `${cleanPath}/index.html`];
+		const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+		const candidates = [`/${cleanPath}/index.html`, `/${cleanPath}`];
 		for (const cand of candidates) {
 			try {
 				const assetUrl = new URL(cand, request ? request.url : 'http://localhost');
-				const res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
-				if (res && res.status < 400) {
+				const res = await env.ASSETS.fetch(new Request(assetUrl.toString()));
+				if (res && res.status === 200) {
 					const headers = new Headers(res.headers);
 					headers.set('Content-Type', 'text/html;charset=utf-8');
 					headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 					headers.set('Pragma', 'no-cache');
 					headers.set('Expires', '0');
-					return new Response(res.body, { status, statusText: res.statusText, headers });
+					return new Response(res.body, { status, headers });
 				}
 			} catch (_) {}
 		}
@@ -66,7 +66,7 @@ export default {
 		const userID = (envUUID && uuidRegex.test(envUUID)) ? envUUID.toLowerCase() : [userIDMD5.slice(0, 8), userIDMD5.slice(8, 12), '4' + userIDMD5.slice(13, 16), '8' + userIDMD5.slice(17, 20), userIDMD5.slice(20)].join('-');
 		const hosts = env.HOST ? (await formatToArray(env.HOST)).map(h => h.toLowerCase().replace(/^https?:\/\//, '').split('/')[0].split(':')[0]) : [url.hostname];
 		const host = hosts[0];
-		const requestPath = url.pathname.slice(1).toLowerCase();
+		const requestPath = url.pathname.slice(1).toLowerCase().replace(/\/+$/, '');
 		debugLogEnabled = ['1', 'true'].includes(env.DEBUG) || debugLogEnabled;
 		preloadRaceDialEnabled = ['1', 'true'].includes(env.PRELOAD_RACE_DIAL) || preloadRaceDialEnabled;
 		proxyConcurrentDialCount = Math.max(1, Number(env.PROXY_CONCURRENT_DIAL) || proxyConcurrentDialCount);
