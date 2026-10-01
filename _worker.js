@@ -360,7 +360,8 @@ export default {
 							const total = Number.isFinite(config_JSON.CF.Usage.max) ? (config_JSON.CF.Usage.max / 1000) * 1024 : 1024 * 100;
 							responseHeaders["Subscription-Userinfo"] = `upload=${pagesSum}; download=${workersSum}; total=${total}; expire=4102329600`; // 2099-12-31 Expiration timestamp
 						}
-						const isSubConverterRequest = url.searchParams.has('b64') || url.searchParams.has('base64') || request.headers.get('subconverter-request') || request.headers.get('subconverter-version') || ua.includes('subconverter') || ua.includes(('CF-Workers-SUB').toLowerCase()) || isBestSubGenerator;
+						const isSubconverterEnabled = config_JSON.subConverterConfig?.enabled === true;
+						const isSubConverterRequest = !isSubconverterEnabled || url.searchParams.has('b64') || url.searchParams.has('base64') || request.headers.get('subconverter-request') || request.headers.get('subconverter-version') || ua.includes('subconverter') || ua.includes(('CF-Workers-SUB').toLowerCase()) || isBestSubGenerator;
 						const subType = isSubConverterRequest
 							? 'mixed'
 							: url.searchParams.has('target')
@@ -5710,6 +5711,7 @@ async function readConfigJson(env, hostname, userID, UA = "Mozilla/5.0", resetCo
 			TOKEN: await MD5MD5(hostname + userID),
 		},
 		subConverterConfig: {
+			enabled: false,
 			SUBAPI: `https://SUBAPI.${signatureDict[1]}ssss.net`,
 			SUBCONFIG: `https://raw.githubusercontent.com/${signatureDict[1]}/ACL4SSR/refs/heads/main/Clash/config/ACL4SSR_Online_Mini_MultiMode_CF.ini`,
 			SUBEMOJI: false,
