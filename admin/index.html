@@ -1869,13 +1869,13 @@
 		}
 
 		/* 返回顶部图标样式 */
-		.social-link[title="返回顶部"]:hover {
+		.social-link[title="Back to Top"]:hover {
 			color: #10b981;
 			border-color: rgba(16, 185, 129, 0.4);
 			box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25), 0 4px 12px rgba(5, 150, 105, 0.15)
 		}
 
-		.social-link[title="返回顶部"]:hover::before {
+		.social-link[title="Back to Top"]:hover::before {
 			background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%);
 			opacity: 1
 		}
@@ -2924,7 +2924,7 @@
 			box-shadow: 0 8px 24px rgba(42, 171, 238, 0.3), 0 4px 12px rgba(34, 158, 217, 0.2)
 		}
 
-		html.dark-mode .social-link[title="返回顶部"]:hover {
+		html.dark-mode .social-link[title="Back to Top"]:hover {
 			color: #34d399;
 			border-color: rgba(52, 211, 153, 0.5);
 			box-shadow: 0 8px 24px rgba(52, 211, 153, 0.3), 0 4px 12px rgba(16, 185, 129, 0.2)
@@ -10245,7 +10245,7 @@
 <script>
 // Auto-translation engine for edgetunnel Admin Dashboard
 (function() {
-    const DICT = {"我是小白！我想简单点！": "Simple Mode", "我是大佬！我要折腾！": "Advanced Mode", "⚠️重置配置": "⚠️ Reset Config", "👋退出登录": "👋 Sign Out", "重置配置": "Reset Configuration", "退出登录": "Sign Out", "保存配置": "Save Configuration", "确定": "Confirm", "取消": "Cancel", "复制": "Copy", "已复制": "Copied!", "加载中...": "Loading...", "刷新": "Refresh", "清除日志": "Clear Logs", "清空": "Clear", "测试": "Test", "导入": "Import", "导出": "Export", "Workers/Pages 请求使用情况": "Workers / Pages Request Analytics", "Workers 请求": "Workers Requests", "Pages 请求": "Pages Requests", "日配额": "Daily Quota", "每日请求数重置清零：": "Daily Requests Reset: ", "距离重置还有": "Time until reset: ", "小时": "hours", "分": " min ", "秒": "s", "今日使用情况总计：": "Total Today: ", "北京时间 (UTC+8)": "Beijing Time (UTC+8)", "重置，": " reset, ", "🌍 当前网络信息": "🌍 Current Network Information", "国内测试": "Domestic Test", "CN-Test": "CN-Test", "· 您访问国内站点所使用的IP": "· Outbound IP for domestic sites", "墙外测试": "Global Test", "· 您访问海外站点所使用的出口IP": "· Outbound IP for international sites", "直连测试": "Direct Test", "· 直连访问CF边缘节点的IP": "· Direct IP to Cloudflare Edge", "网络信息": "Network Info", "正在检测网络环境...": "Detecting network environment...", "运营商": "ISP", "位置": "Location", "数据中心": "Data Center", "📋 获取节点链接": "📋 Export Node Links", "订阅链接": "Subscription Link", "聚合订阅": "Aggregated Subscription", "通用订阅": "Universal Subscription", "节点信息": "Node Information", "单节点链接": "Single Node Links", "二维码": "QR Code", "复制节点链接": "Copy Node Link", "生成订阅": "Generate Subscription", "全部节点": "All Nodes", "⚡️ 优选订阅生成": "⚡️ Best Subscription Generator", "优选订阅": "Preferred Subscription", "本地优选": "Local Best IP", "优选域名": "Preferred Domains", "优选IP": "Preferred IPs", "随机数量": "Random Count", "指定端口": "Designated Port", "本地IP库": "Local IP Pool", "更新时间": "Update Interval", "⚙️ 详细配置信息": "⚙️ Detailed Configuration", "基础设置": "Basic Settings", "协议类型": "Protocol Type", "传输协议": "Transport Protocol", "gRPC模式": "gRPC Mode", "跳过证书验证": "Skip Cert Verification", "启用0RTT": "Enable 0-RTT", "TLS分片": "TLS Fragment", "随机路径": "Random Path", "伪装域名": "SNI / Host", "路径": "Path", "UUID / 密码": "UUID / Password", "管理员密码": "Admin Password", "🔐 Encrypted Client Hello": "🔐 Encrypted Client Hello (ECH)", "什么是ECH？": "What is ECH?", "如何使用？": "How to Use?", "如何确认 ECH 是否已经生效？": "How to verify ECH status?", "🌐 Cloudflare CDN 访问设置": "🌐 Cloudflare CDN Access Settings", "反代设置": "Proxy Settings", "反代地址": "Proxy IP / Domain", "反代端口": "Proxy Port", "路径模板": "Path Template", "全局代理": "Global Proxy", "启用全局代理": "Enable Global Proxy", "白名单": "Whitelist", "🔄 订阅转换配置": "🔄 Subconverter Configuration", "后端地址": "Backend URL", "规则配置": "Rule Config", "启用UDP": "Enable UDP", "启用XUDP": "Enable XUDP", "启用TLS13": "Enable TLS 1.3", "节点排序": "Sort Nodes", "节点emoji": "Node Emoji", "🔔 消息通知设置": "🔔 Notification Settings", "通知设置": "Notification Settings", "机器人Token": "Bot Token", "用户ID": "Chat ID", "发送测试消息": "Send Test Message", "📋 查看操作日志": "📋 View Audit Logs", "操作日志": "Audit Logs", "时间": "Time", "IP地址": "IP Address", "事件类型": "Event Type", "详情": "Details", "暂无日志": "No logs recorded", "正常": "Healthy", "已启用": "Enabled", "已关闭": "Disabled", "成功": "Success", "失败": "Failed", "未知": "Unknown", "开启": "On", "关闭": "Close", "由": "Powered by ", "强力驱动": "", "配置已保存": "Configuration saved successfully", "保存失败": "Failed to save configuration", "-- 请选择代理 --": "-- Select Proxy --", "-- 请选择地区 --": "-- Select Region --", "-- 加载中，请稍候 --": "-- Loading, please wait --", "筛选后暂无结果": "No results found matching filter", "暂无结果": "No results found", "Base64订阅": "Base64 Subscription", "Clash订阅": "Clash Subscription", "Sing-box订阅": "Sing-box Subscription", "Surge订阅": "Surge Subscription", "Quantumult X订阅": "Quantumult X Subscription", "Shadowrocket订阅": "Shadowrocket Subscription", "V2Ray订阅": "V2Ray Subscription", "复制全部": "Copy All", "导入节点": "Import Nodes", "节点类型": "Node Type", "节点列表": "Node List", "可用": "available", "行": "rows", "个": "items", "毫秒": "ms", "自定义": "Custom", "默认": "Default", "自动": "Auto", "手动": "Manual", "启用": "Enable", "禁用": "Disable", "重试": "Retry", "应用": "Apply", "保存": "Save", "编辑": "Edit", "查看": "View", "删除": "Delete", "新增": "Add", "备注": "Remark", "域名": "Domain", "端口": "Port", "地址": "Address", "密钥": "Key", "密码": "Password", "状态": "Status", "操作": "Action", "类型": "Type", "规则": "Rules", "模式": "Mode", "协议": "Protocol", "指纹": "Fingerprint", "伪装": "Camouflage", "黑名单": "Blacklist", "测速": "Speed Test", "延迟": "Latency", "丢包": "Packet Loss", "速度": "Speed", "配置成功": "Configured successfully", "保存成功": "Saved successfully", "重置成功": "Reset successfully", "操作失败": "Operation failed", "未知错误": "Unknown error", "网络错误": "Network error", "连接超时": "Connection timed out", "验证失败": "Verification failed", "验证通过": "Verification passed", "正在加载": "Loading", "请稍候": "Please wait", "确认操作": "Confirm Action", "警告": "Warning", "提示": "Notice", "注意": "Note", "说明": "Description", "帮助": "Help", "文档": "Docs", "关于": "About", "版本": "Version", "退出": "Sign Out"};
+    const DICT = {" 设置页面": " Settings", "设置页面": "Settings", "🚀 我是高手！我就要折腾！": "🚀 Advanced Mode", "🐣 我是小白！我想简单点！": "🐣 Simple Mode", "我是高手！我就要折腾！": "Advanced Mode", "我是小白！我想简单点！": "Simple Mode", "我是大佬！我要折腾！": "Advanced Mode", "⚠️重置配置": "⚠️ Reset Config", "👋退出登录": "👋 Sign Out", "重置配置": "Reset Configuration", "退出登录": "Sign Out", "保存配置": "Save Configuration", "加载中...": "Loading...", "节点链接格式": "Node Link Format", "自适应订阅": "Adaptive Subscription", "复制节点": "Copy Node", "复制订阅": "Copy Sub", "Copy节点": "Copy Node", "Copy订阅": "Copy Sub", "单节点链接": "Single Node Links", "通用订阅": "Universal Subscription", "聚合订阅": "Aggregated Subscription", "二维码": "QR Code", "全部节点": "All Nodes", "订阅链接": "Subscription Link", "优选订阅模式": "Subscription Mode", "Preferred SubscriptionMode": "Subscription Mode", "随机优选（根据订阅时的网络自动下发对应网络的官方优选）": "Random Best (Auto-assigns official preferred IPs by network)", "随机优选（根据订阅网络Auto下发对应网络的官方优选）": "Random Best (Auto-assigns official preferred IPs by network)", "优选订阅生成器（抄作业，直接使用大佬优选好的结果）": "Community Best IPs (Auto-updated from shared sources)", "随机优选数量": "Random Best Count", "指定优选端口": "Designated Port", "指定优选Port": "Designated Port", "随机端口": "Random Port", "随机Port": "Random Port", "自定义优选地址": "Custom Preferred Addresses", "自定义优选": "Custom Preferred IPs/Domains", "优选订阅生成器": "Subscription Generator URL", "开始优选": "Start Speed Test", "在线优选IP": "Online Speed Test", "在线优选": "Online Speed Test", "本地客户端优选": "Local Client Test", "请选择一种优选方式": "Please select a test method", "查看自定义优选 填写说明": "View Custom Preferred Instructions", "优选域名": "Preferred Domain", "优选IPv4": "Preferred IPv4", "优选IPv6": "Preferred IPv6", "优选IP": "Preferred IP", "更新时间": "Update Interval", "本地IP库": "Local IP Pool", "基础设置": "Basic Settings", "协议类型": "Protocol Type", "传输协议": "Transport Protocol", "gRPC模式": "gRPC Mode", "跳过证书验证": "Skip Cert Verification", "启用0RTT": "Enable 0-RTT", "TLS分片": "TLS Fragment", "随机路径": "Random Path", "伪装域名": "SNI / Host", "指纹伪装": "Fingerprint Spoofing", "浏览器指纹": "Browser Fingerprint", "加密方式": "Encryption Method", "传输层TLS加密": "TLS Encryption", "UUID / 密码": "UUID / Password", "管理员密码": "Admin Password", "什么是ECH？": "What is ECH?", "如何使用？": "How to Use?", "如何确认 ECH 是否已经生效？": "How to verify ECH status?", "EchConfig DNS服务": "ECH DNS Service", "EchConfig 解析域名": "ECH Resolve Domain", "反代设置": "Proxy Settings", "反代模式": "Proxy Mode", "反代地址": "Proxy Address", "反代端口": "Proxy Port", "路径模板": "Path Template", "全局代理": "Global Proxy", "启用全局代理": "Enable Global Proxy", "白名单": "Whitelist", "后端地址": "Backend URL", "规则配置": "Rule Config", "启用 UDP": "Enable UDP", "启用 XUDP": "Enable XUDP", "开启 TLS 1.3": "Enable TLS 1.3", "节点排序": "Sort Nodes", "节点emoji": "Node Emoji", "展开规则全文": "Expand Full Rules", "插入节点类型": "Append Node Type", "仅输出节点信息，不附加规则和策略组": "Node List Only (No Rules)", "在节点名称中匹配并显示 Emoji 旗帜图标": "Display Country Flag Emojis", "通知设置": "Notification Settings", "机器人Token": "Bot Token", "用户ID": "Chat ID", "发送测试消息": "Send Test Message", "操作日志": "Audit Logs", "查看操作日志": "View Audit Logs", "所有操作日志": "All Audit Logs", "全部日志": "All Logs", "可用性验证": "Verify Availability", "清除日志": "Clear Logs", "时间": "Time", "IP地址": "IP Address", "事件类型": "Event Type", "详情": "Details", "暂无日志": "No logs recorded", "确认开启": "Confirm Enable", "确定重置": "Confirm Reset", "取消重置": "Cancel", "确定清除": "Confirm Clear", "我知道风险，继续使用": "I understand the risks, proceed", "使用「客户端自动协商」": "Use Client Auto-Negotiate", "关于 edgetunnel": "About edgetunnel", "最新版本": "Latest Version", "当前版本": "Current Version", "需要更新": "Update Available", "更新日志": "Changelog", "查看更新日志": "View Changelog", "等待加载更新日志...": "Loading changelog...", "复制最新Worker.js源码 到剪贴板": "Copy latest Worker.js to Clipboard", "下载最新Pages.zip源码 上传部署": "Download latest Pages.zip", "确定": "Confirm", "取消": "Cancel", "保存": "Save", "关闭": "Close", "清空": "Clear", "复制": "Copy", "已复制": "Copied!", "刷新": "Refresh", "测试": "Test", "导入": "Import", "导出": "Export", "正常": "Healthy", "已启用": "Enabled", "已关闭": "Disabled", "成功": "Success", "失败": "Failed", "未知": "Unknown", "开启": "On", "推荐": "Recommended"};
     
     const sortedKeys = Object.keys(DICT).sort((a, b) => b.length - a.length);
     
@@ -10476,28 +10476,28 @@
 					</svg>
 				</div>
 				<div class="form-group">
-					<label for="LinkURL">节点链接格式</label>
+					<label for="LinkURL">Node Link Format</label>
 					<div class="input-wrapper subscription-link-wrapper">
-						<input type="text" id="LinkURL" title="节点链接格式" readonly>
+						<input type="text" id="LinkURL" title="Node Link Format" readonly>
 						<div class="btn-container">
-							<button type="button" class="btn btn-qrcode" onclick="showQRCode('LinkURL')">📱二维码</button>
+							<button type="button" class="btn btn-qrcode" onclick="showQRCode('LinkURL')">📱 QR Code</button>
 							<button type="button" class="btn btn-primary"
-								onclick="copySubscription('LinkURL')">复制节点</button>
+								onclick="copySubscription('LinkURL')">Copy Node</button>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="label-with-hint">
-						<label for="subLink">自适应订阅</label>
+						<label for="subLink">Adaptive Subscription</label>
 						<button type="button" class="inline-hint-btn" title="查看订阅鉴权 TOKEN 说明"
 							onclick="showAuthTokenHelpModal('token')" aria-label="查看订阅鉴权 TOKEN 说明">!</button>
 					</div>
 					<div class="input-wrapper subscription-link-wrapper">
-						<input type="text" id="subLink" title="自适应订阅" readonly>
+						<input type="text" id="subLink" title="Adaptive Subscription" readonly>
 						<div class="btn-container">
-							<button type="button" class="btn btn-qrcode" onclick="showQRCode('subLink')">📱二维码</button>
+							<button type="button" class="btn btn-qrcode" onclick="showQRCode('subLink')">📱 QR Code</button>
 							<button type="button" class="btn btn-primary"
-								onclick="copySubscription('subLink')">复制订阅</button>
+								onclick="copySubscription('subLink')">Copy Sub</button>
 						</div>
 					</div>
 				</div>
@@ -10508,9 +10508,9 @@
 							<input type="text" id="base64Link" title="Base64订阅" readonly>
 							<div class="btn-container">
 								<button type="button" class="btn btn-qrcode"
-									onclick="showQRCode('base64Link')">📱二维码</button>
+									onclick="showQRCode('base64Link')">📱 QR Code</button>
 								<button type="button" class="btn btn-primary"
-									onclick="copySubscription('base64Link')">复制订阅</button>
+									onclick="copySubscription('base64Link')">Copy Sub</button>
 							</div>
 						</div>
 					</div>
@@ -10520,9 +10520,9 @@
 							<input type="text" id="clashLink" title="Clash订阅" readonly>
 							<div class="btn-container">
 								<button type="button" class="btn btn-qrcode"
-									onclick="showQRCode('clashLink')">📱二维码</button>
+									onclick="showQRCode('clashLink')">📱 QR Code</button>
 								<button type="button" class="btn btn-primary"
-									onclick="copySubscription('clashLink')">复制订阅</button>
+									onclick="copySubscription('clashLink')">Copy Sub</button>
 							</div>
 						</div>
 					</div>
@@ -10532,9 +10532,9 @@
 							<input type="text" id="singboxLink" title="SingBox订阅" readonly>
 							<div class="btn-container">
 								<button type="button" class="btn btn-qrcode"
-									onclick="showQRCode('singboxLink')">📱二维码</button>
+									onclick="showQRCode('singboxLink')">📱 QR Code</button>
 								<button type="button" class="btn btn-primary"
-									onclick="copySubscription('singboxLink')">复制订阅</button>
+									onclick="copySubscription('singboxLink')">Copy Sub</button>
 							</div>
 						</div>
 					</div>
@@ -10549,24 +10549,24 @@
 				<div class="module-content">
 
 					<div class="form-group">
-						<label for="ipMode">优选订阅模式</label>
-						<select id="ipMode" title="优选订阅模式" onchange="updateIPMode()">
-							<option value="generator">优选订阅生成器（抄作业，直接使用大佬优选好的结果）</option>
-							<option value="random">随机优选（根据订阅时的网络自动下发对应网络的官方优选）</option>
+						<label for="ipMode">Subscription Mode</label>
+						<select id="ipMode" title="Subscription Mode" onchange="updateIPMode()">
+							<option value="generator">Community Best IPs (Auto-updated from shared sources)</option>
+							<option value="random">Random Best (Auto-assigns official preferred IPs by client network)</option>
 							<option value="custom">自定义订阅（支持汇聚订阅）</option>
 						</select>
 					</div>
 
 					<div id="randomIPSection" class="form-group">
-						<label for="randomCount">随机优选数量</label>
-						<input type="number" id="randomCount" title="随机优选数量 1~99" min="1" max="99" value="16"
+						<label for="randomCount">Random Best Count</label>
+						<input type="number" id="randomCount" title="Random Best Count 1~99" min="1" max="99" value="16"
 							onchange="markModified('sub')" oninput="if(this.value>99){this.value=99;}">
 					</div>
 
 					<div id="portSection" class="form-group hidden-section">
-						<label for="specifiedPort">指定优选端口</label>
+						<label for="specifiedPort">Designated Port</label>
 						<select id="specifiedPort" onchange="markModified('sub')">
-							<option value="-1">随机端口</option>
+							<option value="-1">Random Port</option>
 							<option value="443">443</option>
 							<option value="2053">2053</option>
 							<option value="2083">2083</option>
@@ -10578,9 +10578,9 @@
 
 					<div id="customIPSection" class="form-group hidden-section">
 						<div class="label-with-hint">
-							<label for="customIPs">自定义优选</label>
-							<button type="button" class="inline-hint-btn" title="查看自定义优选 填写说明"
-								onclick="showAuthTokenHelpModal('customIPs')" aria-label="查看自定义优选 填写说明">!</button>
+							<label for="customIPs">Custom Preferred IPs/Domains</label>
+							<button type="button" class="inline-hint-btn" title="View Custom Preferred Instructions"
+								onclick="showAuthTokenHelpModal('customIPs')" aria-label="View Custom Preferred Instructions">!</button>
 						</div>
 						<div class="line-editor line-editor-wrap" id="subCustomEditor">
 							<div class="gutter" aria-hidden="true">
@@ -10590,7 +10590,7 @@
 								<div class="line-shades" aria-hidden="true">
 									<div class="shade-line"></div>
 								</div>
-								<textarea id="customIPs" title="自定义优选地址" wrap="soft" placeholder="www.visa.cn#优选域名
+								<textarea id="customIPs" title="Custom Preferred Addresses" wrap="soft" placeholder="www.visa.cn#Preferred Domain
 104.24.0.232:8443#优选IPv4
 [2606:4700::]:2053#优选IPv6" onchange="markModified('sub')"></textarea>
 							</div>
@@ -10598,14 +10598,14 @@
 					</div>
 
 					<div id="generatorSection" class="form-group hidden-section">
-						<label for="generatorURL">优选订阅生成器</label>
-						<input type="text" id="generatorURL" title="优选订阅生成器" placeholder="sub.cmliussss.net"
+						<label for="generatorURL">Subscription Generator URL</label>
+						<input type="text" id="generatorURL" title="Subscription Generator URL" placeholder="sub.cmliussss.net"
 							onchange="processGeneratorURL()" oninput="processGeneratorURL()">
 					</div>
 
 					<div class="module-footer">
 						<button type="button" class="btn btn-online-optimize hidden-section" id="onlineOptimizeBtn"
-							onclick="openOptimizeStartModal()">开始优选</button>
+							onclick="openOptimizeStartModal()">Start Speed Test</button>
 						<button type="button" class="btn btn-api-optimize hidden-section" id="apiOptimizeBtn"
 							onclick="openAPIOptimizeModal()">订阅接口</button>
 						<button type="button" class="btn btn-chain-proxy hidden-section" id="chainProxyBtn"
@@ -10614,7 +10614,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('sub')" disabled
 								id="cancelSubBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveSub()" disabled
-								id="saveSubBtn">保存</button>
+								id="saveSubBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -10665,14 +10665,14 @@
 
 						<div class="form-group" id="ssMethodGroup" style="display: none;"
 							title="Shadowsocks 的加密方式，推荐使用 aes-128-gcm 以获得更好的性能和兼容性。">
-							<label for="ssMethod">加密方式</label>
+							<label for="ssMethod">Encryption Method</label>
 							<select id="ssMethod" onchange="markModified('config')">
 								<option value="aes-128-gcm">aes-128-gcm（CPU消耗少速度快）</option>
 								<option value="aes-256-gcm">aes-256-gcm（在性能不佳的老设备上，加解密速度会变慢）</option>
 							</select>
 						</div>
 
-						<div class="form-group" id="ssTLSGroup" style="display: none;" title="传输层TLS加密">
+						<div class="form-group" id="ssTLSGroup" style="display: none;" title="TLS Encryption">
 							<label for="ssTLS">TLS</label>
 							<select id="ssTLS" onchange="handleSSTLSChange(event)">
 								<option value="true">启用（开启TLS，速度不会比VLESS/Trojan更快，因为Shadowsocks自带AEAD加密）</option>
@@ -10682,7 +10682,7 @@
 
 						<div class="form-group mobile-half" id="transportGroup" style="display: none;">
 							<label>Transport Protocol</label>
-							<select id="transport" title="传输协议" onchange="handleTransportChange()">
+							<select id="transport" title="Transport Protocol" onchange="handleTransportChange()">
 								<option value="ws">WebSocket 速度快！(适合大多数场景)</option>
 								<option value="xhttp">XHTTP 长连接不断流！(适合AI长思考、单线程下载)</option>
 								<option value="grpc">gRPC 花里胡笑！</option>
@@ -10691,7 +10691,7 @@
 
 						<div class="form-group mobile-half" id="grpcModeGroup" style="display: none;">
 							<label for="grpcMode">gRPC Mode</label>
-							<select id="grpcMode" title="gRPC模式" onchange="markModified('config')">
+							<select id="grpcMode" title="gRPC Mode" onchange="markModified('config')">
 								<option value="gun">gun 普通模式</option>
 								<option value="multi">multi 并发模式</option>
 							</select>
@@ -10710,8 +10710,8 @@
 						</div>
 
 						<div class="form-group mobile-half" id="fingerprintGroup">
-							<label for="fingerprint">指纹伪装</label>
-							<select id="fingerprint" title="浏览器指纹"
+							<label for="fingerprint">Fingerprint Spoofing</label>
+							<select id="fingerprint" title="Browser Fingerprint"
 								onchange="handleFingerprintChange(); markModified('config')">
 								<option value="chrome">chrome（支持ECH）</option>
 								<option value="firefox">firefox（支持ECH）</option>
@@ -10805,7 +10805,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('config')" disabled
 								id="cancelConfigBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveConfig()" disabled
-								id="saveConfigBtn">保存</button>
+								id="saveConfigBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -10835,7 +10835,7 @@
 
 					<div class="form-group" id="echDNSGroup" title="用于获取 EchConfig 的DNS服务"
 						style="display: none; align-items: start;">
-						<label for="echDNSSelect" style="padding-top: 10px;">EchConfig DNS服务</label>
+						<label for="echDNSSelect" style="padding-top: 10px;">ECH DNS Service</label>
 						<div class="input-wrapper" style="flex-direction: column; align-items: stretch;">
 							<select id="echDNSSelect" style="display: none;" onchange="onEchDNSSelectChange()">
 								<option value="udp://208.67.220.220:443" data-region="international">
@@ -10871,7 +10871,7 @@
 					<div class="form-group" id="echSNIGroup"
 						title="用于解析 EchConfig 的域名，并非ECH伪装域名！CF ECH伪装域名均为 cloudflare-ech.com ！！！"
 						style="display: none; align-items: start;">
-						<label for="echSNISelect" style="padding-top: 10px;">EchConfig 解析域名</label>
+						<label for="echSNISelect" style="padding-top: 10px;">ECH Resolve Domain</label>
 						<div class="input-wrapper" style="flex-direction: column; align-items: stretch;">
 							<select id="echSNISelect" style="display: none;" onchange="onEchSNISelectChange()">
 								<option value="__AUTO__">自动获取（使用节点的伪装域名解析 EchConfig）</option>
@@ -10905,7 +10905,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('ech')" disabled
 								id="cancelEchBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveEch()" disabled
-								id="saveEchBtn">保存</button>
+								id="saveEchBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -10922,8 +10922,8 @@
 				<div class="module-content">
 
 					<div class="form-group">
-						<label for="proxyMode">反代模式</label>
-						<select id="proxyMode" title="反代模式" onchange="updateProxyMode()">
+						<label for="proxyMode">Proxy Mode</label>
+						<select id="proxyMode" title="Proxy Mode" onchange="updateProxyMode()">
 							<option value="auto">PROXYIP</option>
 							<option value="other">其他代理</option>
 						</select>
@@ -11074,7 +11074,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('proxy')" disabled
 								id="cancelProxyBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveProxy()" disabled
-								id="saveProxyBtn">保存</button>
+								id="saveProxyBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -11162,7 +11162,7 @@
 								<div class="checkbox-group">
 									<input type="checkbox" id="appendType" title="插入节点类型"
 										onchange="markModified('convert')">
-									<label for="appendType" class="checkbox-label" title="插入节点类型">插入节点类型</label>
+									<label for="appendType" class="checkbox-label" title="插入节点类型">Append Node Type</label>
 								</div>
 							</div>
 						</div>
@@ -11178,7 +11178,7 @@
 							<div class="input-wrapper">
 								<div class="checkbox-group">
 									<input type="checkbox" id="expand" title="展开规则全文，输出完整分流规则列表" onchange="markModified('convert')">
-									<label for="expand" class="checkbox-label" title="展开规则全文，输出完整分流规则列表">展开规则全文</label>
+									<label for="expand" class="checkbox-label" title="展开规则全文，输出完整分流规则列表">Expand Full Rules</label>
 								</div>
 							</div>
 						</div>
@@ -11189,7 +11189,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('convert')" disabled
 								id="cancelConvertBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveConvert()" disabled
-								id="saveConvertBtn">保存</button>
+								id="saveConvertBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -11241,7 +11241,7 @@
 							<button type="button" class="btn btn-secondary" onclick="cancelEdit('notification')"
 								disabled id="cancelNotificationBtn">Cancel</button>
 							<button type="button" class="btn btn-primary" onclick="saveNotification()" disabled
-								id="saveNotificationBtn">保存</button>
+								id="saveNotificationBtn">Save</button>
 						</div>
 					</div>
 				</div>
@@ -11261,14 +11261,14 @@
 					</div>
 					<div class="logs-footer">
 						<p class="logs-footer-text">因为KV空间有限，所以只保留4MB的操作日志，当日志大小超过该容量会自动清理最老的日志记录。</p>
-						<button type="button" class="btn btn-primary btn-all-logs" onclick="showAllLogs()">全部日志</button>
+						<button type="button" class="btn btn-primary btn-all-logs" onclick="showAllLogs()">All Logs</button>
 					</div>
 				</div>
 			</div>
 
 			<div class="social-links">
 				<!-- 主题切换按钮 -->
-				<button type="button" class="social-link theme-toggle" id="themeToggle" title="切换日间模式"
+				<button type="button" class="social-link theme-toggle" id="themeToggle" title="Toggle Light Mode"
 					onclick="toggleTheme()">
 					<!-- 太阳图标 (日间模式显示) -->
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="theme-icon sun-icon">
@@ -11304,13 +11304,13 @@
 							d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12a12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472c-.18 1.898-.962 6.502-1.36 8.627c-.168.9-.499 1.201-.82 1.23c-.696.065-1.225-.46-1.9-.902c-1.056-.693-1.653-1.124-2.678-1.8c-1.185-.78-.417-1.21.258-1.91c.177-.184 3.247-2.977 3.307-3.23c.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345c-.48.33-.913.49-1.302.48c-.428-.008-1.252-.241-1.865-.44c-.752-.245-1.349-.374-1.297-.789c.027-.216.325-.437.893-.663c3.498-1.524 5.83-2.529 6.998-3.014c3.332-1.386 4.025-1.627 4.476-1.635z" />
 					</svg>
 				</a>
-				<div class="social-link social-version" id="versionBadge" title="当前版本" role="button" tabindex="0"
+				<div class="social-link social-version" id="versionBadge" title="Current Version" role="button" tabindex="0"
 					onclick="openVersionInfoModal()" onkeydown="onVersionBadgeKeydown(event)" hidden
 					style="display: none;">
 					<span id="versionValue"></span>
 				</div>
 				<!-- 返回顶部按钮 -->
-				<button type="button" class="social-link" title="返回顶部" onclick="scrollToTop()">
+				<button type="button" class="social-link" title="Back to Top" onclick="scrollToTop()">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
 							stroke-linejoin="round" d="M12 19V5M5 12l7-7l7 7" />
@@ -11339,7 +11339,7 @@
 						id="latestVersionInfoValue">v0</span></p>
 				<p id="currentVersionInfoText" class="version-info-line"><strong>当前版本:</strong> <span
 						id="currentVersionInfoValue">v0</span> <span id="currentVersionStateText"
-						class="version-state-tip is-outdated">需要更新</span></p>
+						class="version-state-tip is-outdated">Update Available</span></p>
 			</div>
 			<div class="version-info-actions">
 				<button type="button" id="versionCopyBtn" class="btn btn-version-copy" onclick="copyLatestWorkerSourceToClipboard()">📋
@@ -11360,7 +11360,7 @@
 			<h2 class="version-info-title">📜 更新日志</h2>
 			<div class="version-changelog-wrapper">
 				<div class="version-changelog-content" id="versionChangelogContent">
-					<p class="version-changelog-placeholder">等待加载更新日志...</p>
+					<p class="version-changelog-placeholder">Loading changelog...</p>
 				</div>
 			</div>
 			<div class="version-changelog-actions">
@@ -11390,7 +11390,7 @@
 			</div>
 			<div class="skipverify-buttons">
 				<button type="button" class="btn btn-confirm-skip-verify btn-confirm-reset"
-					onclick="confirmSkipVerify()">确认开启</button>
+					onclick="confirmSkipVerify()">Confirm Enable</button>
 				<button type="button" class="btn btn-secondary" onclick="closeSkipVerifyWarning()">Off</button>
 			</div>
 		</div>
@@ -11411,8 +11411,8 @@
 			</div>
 			<div class="alpn-buttons">
 				<button type="button" class="btn btn-confirm-alpn btn-confirm-reset"
-					onclick="confirmALPNSelection()">我知道风险，继续使用</button>
-				<button type="button" class="btn btn-alpn-safe" onclick="keepAutoALPN()">使用「客户端自动协商」</button>
+					onclick="confirmALPNSelection()">I understand the risks, proceed</button>
+				<button type="button" class="btn btn-alpn-safe" onclick="keepAutoALPN()">Use Client Auto-Negotiate</button>
 			</div>
 		</div>
 	</div>
@@ -11444,8 +11444,8 @@
 			<p class="reset-modal-description">重置配置将会初始化所有设置，包括订阅生成、节点信息、反代配置等。此操作不可撤销，请谨慎操作。</p>
 			<p class="reset-modal-confirm">确定是否完全重置配置？</p>
 			<div class="reset-modal-buttons">
-				<button type="button" class="btn btn-primary btn-confirm-reset" onclick="confirmReset()">确定重置</button>
-				<button type="button" class="btn btn-secondary" onclick="closeResetModal()">取消重置</button>
+				<button type="button" class="btn btn-primary btn-confirm-reset" onclick="confirmReset()">Confirm Reset</button>
+				<button type="button" class="btn btn-secondary" onclick="closeResetModal()">Cancel</button>
 			</div>
 		</div>
 	</div>
@@ -11458,7 +11458,7 @@
 			<p class="reset-modal-confirm">确定是否清除 Telegram 通知配置？</p>
 			<div class="reset-modal-buttons">
 				<button type="button" class="btn btn-primary btn-confirm-reset"
-					onclick="confirmClearTelegramConfig()">确定清除</button>
+					onclick="confirmClearTelegramConfig()">Confirm Clear</button>
 				<button type="button" class="btn btn-secondary" onclick="closeClearTelegramModal()">Cancel</button>
 			</div>
 		</div>
@@ -11472,7 +11472,7 @@
 			<p class="reset-modal-confirm">确定是否清除 Cloudflare 通知配置？</p>
 			<div class="reset-modal-buttons">
 				<button type="button" class="btn btn-primary btn-confirm-reset"
-					onclick="confirmClearCloudflareConfig()">确定清除</button>
+					onclick="confirmClearCloudflareConfig()">Confirm Clear</button>
 				<button type="button" class="btn btn-secondary" onclick="closeClearCloudflareModal()">Cancel</button>
 			</div>
 		</div>
@@ -11505,7 +11505,7 @@
 			</div>
 			<div id="subAPIStatus" class="subapi-status"></div>
 			<div class="subapi-buttons">
-				<button type="button" class="btn btn-primary btn-test-api" onclick="testSubAPI()">可用性验证</button>
+				<button type="button" class="btn btn-primary btn-test-api" onclick="testSubAPI()">Verify Availability</button>
 				<button type="button" class="btn btn-primary btn-confirm-api" id="subAPIConfirmBtn"
 					onclick="confirmSubAPI()" disabled>Confirm</button>
 				<button type="button" class="btn btn-secondary btn-cancel-api" onclick="closeSubAPIModal()">Cancel</button>
@@ -11520,17 +11520,17 @@
 			<h2 class="subapi-modal-title">🤖 TelegramBot 通知参数配置</h2>
 			<div class="form-group subapi-form-group">
 				<label>Bot Token</label>
-				<input type="text" id="telegramBotToken" placeholder="输入Telegram Bot Token">
+				<input type="text" id="telegramBotToken" placeholder="Enter Telegram Bot Token">
 			</div>
 			<div class="form-group subapi-form-group">
 				<label>Chat ID</label>
-				<input type="text" id="telegramChatID" placeholder="输入Chat ID">
+				<input type="text" id="telegramChatID" placeholder="Enter Chat ID">
 			</div>
 			<div id="telegramStatus" class="subapi-status"></div>
 			<div class="subapi-buttons">
-				<button type="button" class="btn btn-primary btn-test-api" onclick="testTelegramConfig()">可用性验证</button>
+				<button type="button" class="btn btn-primary btn-test-api" onclick="testTelegramConfig()">Verify Availability</button>
 				<button type="button" class="btn btn-primary btn-confirm-api" id="telegramConfirmBtn"
-					onclick="confirmTelegramConfig()" disabled>保存</button>
+					onclick="confirmTelegramConfig()" disabled>Save</button>
 				<button type="button" class="btn btn-secondary btn-cancel-api"
 					onclick="closeTelegramConfigModal()">Cancel</button>
 			</div>
@@ -11557,11 +11557,11 @@
 			<div id="cloudflareEmailSection">
 				<div class="form-group subapi-form-group">
 					<label>Email</label>
-					<input type="text" id="cloudflareEmail" placeholder="输入Cloudflare账户邮箱">
+					<input type="text" id="cloudflareEmail" placeholder="Enter Cloudflare Account Email">
 				</div>
 				<div class="form-group subapi-form-group">
 					<label>Global API Key</label>
-					<input type="password" id="cloudflareGlobalAPIKey" placeholder="输入Global API Key">
+					<input type="password" id="cloudflareGlobalAPIKey" placeholder="Enter Global API Key">
 				</div>
 			</div>
 
@@ -11569,11 +11569,11 @@
 			<div id="cloudflareAccountIDSection" class="hidden-section">
 				<div class="form-group subapi-form-group">
 					<label>Account ID</label>
-					<input type="text" id="cloudflareAccountID" placeholder="输入Account ID">
+					<input type="text" id="cloudflareAccountID" placeholder="Enter Account ID">
 				</div>
 				<div class="form-group subapi-form-group">
 					<label>API Token</label>
-					<input type="password" id="cloudflareAPIToken" placeholder="输入API Token">
+					<input type="password" id="cloudflareAPIToken" placeholder="Enter API Token">
 					<small style="font-size: 12px; color: #9ca3af; margin-top: 6px; display: block;">💡 API令牌权限 开启
 						"Account Analytics > Read" 权限即可</small>
 				</div>
@@ -11597,9 +11597,9 @@
 			<!-- 按钮组 -->
 			<div class="subapi-buttons">
 				<button type="button" class="btn btn-primary btn-test-api"
-					onclick="testCloudflareConfig()">可用性验证</button>
+					onclick="testCloudflareConfig()">Verify Availability</button>
 				<button type="button" class="btn btn-primary btn-confirm-api" id="cloudflareConfirmBtn"
-					onclick="confirmCloudflareConfig()" disabled>保存</button>
+					onclick="confirmCloudflareConfig()" disabled>Save</button>
 				<button type="button" class="btn btn-secondary btn-cancel-api"
 					onclick="closeCloudflareConfigModal()">Cancel</button>
 			</div>
@@ -11620,11 +11620,11 @@
 		<div class="modal optimize-start-modal" onclick="event.stopPropagation()">
 			<button type="button" class="modal-close" onclick="closeOptimizeStartModal()" aria-label="关闭">×</button>
 			<h2 class="optimize-start-title">🚀 开始优选</h2>
-			<p class="optimize-start-subtitle">请选择一种优选方式</p>
+			<p class="optimize-start-subtitle">Please select a test method</p>
 			<div class="optimize-start-cards">
 				<button type="button" class="optimize-start-card optimize-card-online" onclick="chooseOnlineOptimize()">
 					<span class="optimize-card-icon">🌐</span>
-					<span class="optimize-card-title">在线优选IP<span class="optimize-card-badge">推荐</span></span>
+					<span class="optimize-card-title">Online Speed Test<span class="optimize-card-badge">Recommended</span></span>
 					<span class="optimize-card-desc">通过浏览器实时进行在线优选，兼容性高，有浏览器就能进行</span>
 					<span class="optimize-card-tag tag-pro">✅ 优点：无需安装，即开即用</span>
 					<span class="optimize-card-tag tag-con">⚠️ 缺点：易受运营商阻断，阻断时无法使用</span>
@@ -13586,7 +13586,7 @@
 <script>
 // Auto-translation engine for edgetunnel Admin Dashboard
 (function() {
-    const DICT = {"我是小白！我想简单点！": "Simple Mode", "我是大佬！我要折腾！": "Advanced Mode", "⚠️重置配置": "⚠️ Reset Config", "👋退出登录": "👋 Sign Out", "重置配置": "Reset Configuration", "退出登录": "Sign Out", "保存配置": "Save Configuration", "确定": "Confirm", "取消": "Cancel", "复制": "Copy", "已复制": "Copied!", "加载中...": "Loading...", "刷新": "Refresh", "清除日志": "Clear Logs", "清空": "Clear", "测试": "Test", "导入": "Import", "导出": "Export", "Workers/Pages 请求使用情况": "Workers / Pages Request Analytics", "Workers 请求": "Workers Requests", "Pages 请求": "Pages Requests", "日配额": "Daily Quota", "每日请求数重置清零：": "Daily Requests Reset: ", "距离重置还有": "Time until reset: ", "小时": "hours", "分": " min ", "秒": " sec", "今日使用情况总计：": "Total Today: ", "北京时间 (UTC+8)": "Beijing Time (UTC+8)", "重置，": " reset, ", "🌍 当前网络信息": "🌍 Current Network Information", "国内测试": "Domestic Test", "CN-Test": "CN-Test", "· 您访问国内站点所使用的IP": "· Outbound IP for domestic sites", "墙外测试": "Global Test", "· 您访问海外站点所使用的出口IP": "· Outbound IP for international sites", "直连测试": "Direct Test", "· 直连访问CF边缘节点的IP": "· Direct IP to Cloudflare Edge", "网络信息": "Network Info", "正在检测网络环境...": "Detecting network environment...", "运营商": "ISP", "位置": "Location", "数据中心": "Data Center", "📋 获取节点链接": "📋 Export Node Links", "订阅链接": "Subscription Link", "聚合订阅": "Aggregated Sub", "通用订阅": "Universal Sub", "节点信息": "Node Information", "单节点链接": "Single Node Links", "二维码": "QR Code", "复制节点链接": "Copy Node Link", "生成订阅": "Generate Subscription", "全部节点": "All Nodes", "⚡️ 优选订阅生成": "⚡️ Best Subscription Generator", "优选订阅": "Preferred Subscription", "本地优选": "Local Best IP", "优选域名": "Preferred Domains", "优选IP": "Preferred IPs", "随机数量": "Random Count", "指定端口": "Designated Port", "本地IP库": "Local IP Pool", "更新时间": "Update Interval", "⚙️ 详细配置信息": "⚙️ Detailed Configuration", "基础设置": "Basic Settings", "协议类型": "Protocol Type", "传输协议": "Transport Protocol", "gRPC模式": "gRPC Mode", "跳过证书验证": "Skip Cert Verification", "启用0RTT": "Enable 0-RTT", "TLS分片": "TLS Fragment", "随机路径": "Random Path", "伪装域名": "SNI / Host", "路径": "Path", "UUID / 密码": "UUID / Password", "管理员密码": "Admin Password", "🔐 Encrypted Client Hello": "🔐 Encrypted Client Hello (ECH)", "什么是ECH？": "What is ECH?", "如何使用？": "How to Use?", "如何确认 ECH 是否已经生效？": "How to verify ECH status?", "🌐 Cloudflare CDN 访问设置": "🌐 Cloudflare CDN Access Settings", "反代设置": "Proxy Settings", "反代地址": "Proxy IP / Domain", "反代端口": "Proxy Port", "路径模板": "Path Template", "全局代理": "Global Proxy", "启用全局代理": "Enable Global Proxy", "白名单": "Whitelist", "🔄 订阅转换配置": "🔄 Subconverter Configuration", "后端地址": "Backend URL", "规则配置": "Rule Config", "启用UDP": "Enable UDP", "启用XUDP": "Enable XUDP", "启用TLS13": "Enable TLS 1.3", "节点排序": "Sort Nodes", "节点emoji": "Node Emoji", "🔔 消息通知设置": "🔔 Notification Settings", "通知设置": "Notification Settings", "机器人Token": "Bot Token", "用户ID": "Chat ID", "发送测试消息": "Send Test Message", "📋 查看操作日志": "📋 View Audit Logs", "操作日志": "Audit Logs", "时间": "Time", "IP地址": "IP Address", "事件类型": "Event Type", "详情": "Details", "暂无日志": "No logs recorded", "正常": "Healthy", "已启用": "Enabled", "已关闭": "Disabled", "成功": "Success", "失败": "Failed", "未知": "Unknown", "开启": "On", "关闭": "Off", "由": "Powered by ", "强力驱动": "", "配置已保存": "Configuration saved successfully", "保存失败": "Failed to save configuration"};
+    const DICT = {" 设置页面": " Settings", "设置页面": "Settings", "🚀 我是高手！我就要折腾！": "🚀 Advanced Mode", "🐣 我是小白！我想简单点！": "🐣 Simple Mode", "我是高手！我就要折腾！": "Advanced Mode", "我是小白！我想简单点！": "Simple Mode", "我是大佬！我要折腾！": "Advanced Mode", "⚠️重置配置": "⚠️ Reset Config", "👋退出登录": "👋 Sign Out", "重置配置": "Reset Configuration", "退出登录": "Sign Out", "保存配置": "Save Configuration", "加载中...": "Loading...", "节点链接格式": "Node Link Format", "自适应订阅": "Adaptive Subscription", "复制节点": "Copy Node", "复制订阅": "Copy Sub", "Copy节点": "Copy Node", "Copy订阅": "Copy Sub", "单节点链接": "Single Node Links", "通用订阅": "Universal Subscription", "聚合订阅": "Aggregated Subscription", "二维码": "QR Code", "全部节点": "All Nodes", "订阅链接": "Subscription Link", "优选订阅模式": "Subscription Mode", "Preferred SubscriptionMode": "Subscription Mode", "随机优选（根据订阅时的网络自动下发对应网络的官方优选）": "Random Best (Auto-assigns official preferred IPs by network)", "随机优选（根据订阅网络Auto下发对应网络的官方优选）": "Random Best (Auto-assigns official preferred IPs by network)", "优选订阅生成器（抄作业，直接使用大佬优选好的结果）": "Community Best IPs (Auto-updated from shared sources)", "随机优选数量": "Random Best Count", "指定优选端口": "Designated Port", "指定优选Port": "Designated Port", "随机端口": "Random Port", "随机Port": "Random Port", "自定义优选地址": "Custom Preferred Addresses", "自定义优选": "Custom Preferred IPs/Domains", "优选订阅生成器": "Subscription Generator URL", "开始优选": "Start Speed Test", "在线优选IP": "Online Speed Test", "在线优选": "Online Speed Test", "本地客户端优选": "Local Client Test", "请选择一种优选方式": "Please select a test method", "查看自定义优选 填写说明": "View Custom Preferred Instructions", "优选域名": "Preferred Domain", "优选IPv4": "Preferred IPv4", "优选IPv6": "Preferred IPv6", "优选IP": "Preferred IP", "更新时间": "Update Interval", "本地IP库": "Local IP Pool", "基础设置": "Basic Settings", "协议类型": "Protocol Type", "传输协议": "Transport Protocol", "gRPC模式": "gRPC Mode", "跳过证书验证": "Skip Cert Verification", "启用0RTT": "Enable 0-RTT", "TLS分片": "TLS Fragment", "随机路径": "Random Path", "伪装域名": "SNI / Host", "指纹伪装": "Fingerprint Spoofing", "浏览器指纹": "Browser Fingerprint", "加密方式": "Encryption Method", "传输层TLS加密": "TLS Encryption", "UUID / 密码": "UUID / Password", "管理员密码": "Admin Password", "什么是ECH？": "What is ECH?", "如何使用？": "How to Use?", "如何确认 ECH 是否已经生效？": "How to verify ECH status?", "EchConfig DNS服务": "ECH DNS Service", "EchConfig 解析域名": "ECH Resolve Domain", "反代设置": "Proxy Settings", "反代模式": "Proxy Mode", "反代地址": "Proxy Address", "反代端口": "Proxy Port", "路径模板": "Path Template", "全局代理": "Global Proxy", "启用全局代理": "Enable Global Proxy", "白名单": "Whitelist", "后端地址": "Backend URL", "规则配置": "Rule Config", "启用 UDP": "Enable UDP", "启用 XUDP": "Enable XUDP", "开启 TLS 1.3": "Enable TLS 1.3", "节点排序": "Sort Nodes", "节点emoji": "Node Emoji", "展开规则全文": "Expand Full Rules", "插入节点类型": "Append Node Type", "仅输出节点信息，不附加规则和策略组": "Node List Only (No Rules)", "在节点名称中匹配并显示 Emoji 旗帜图标": "Display Country Flag Emojis", "通知设置": "Notification Settings", "机器人Token": "Bot Token", "用户ID": "Chat ID", "发送测试消息": "Send Test Message", "操作日志": "Audit Logs", "查看操作日志": "View Audit Logs", "所有操作日志": "All Audit Logs", "全部日志": "All Logs", "可用性验证": "Verify Availability", "清除日志": "Clear Logs", "时间": "Time", "IP地址": "IP Address", "事件类型": "Event Type", "详情": "Details", "暂无日志": "No logs recorded", "确认开启": "Confirm Enable", "确定重置": "Confirm Reset", "取消重置": "Cancel", "确定清除": "Confirm Clear", "我知道风险，继续使用": "I understand the risks, proceed", "使用「客户端自动协商」": "Use Client Auto-Negotiate", "关于 edgetunnel": "About edgetunnel", "最新版本": "Latest Version", "当前版本": "Current Version", "需要更新": "Update Available", "更新日志": "Changelog", "查看更新日志": "View Changelog", "等待加载更新日志...": "Loading changelog...", "复制最新Worker.js源码 到剪贴板": "Copy latest Worker.js to Clipboard", "下载最新Pages.zip源码 上传部署": "Download latest Pages.zip", "确定": "Confirm", "取消": "Cancel", "保存": "Save", "关闭": "Close", "清空": "Clear", "复制": "Copy", "已复制": "Copied!", "刷新": "Refresh", "测试": "Test", "导入": "Import", "导出": "Export", "正常": "Healthy", "已启用": "Enabled", "已关闭": "Disabled", "成功": "Success", "失败": "Failed", "未知": "Unknown", "开启": "On", "推荐": "Recommended"};
     
     const sortedKeys = Object.keys(DICT).sort((a, b) => b.length - a.length);
     
@@ -13665,7 +13665,7 @@
 						</div>
 						<div>
 							<h1>BestCF</h1>
-							<small>在线优选</small>
+							<small>Online Speed Test</small>
 						</div>
 					</div>
 				</header>
@@ -13856,7 +13856,7 @@
 								</div>
 								<div class="result-actions-group">
 									<span class="tiny muted selection-status" id="selectionStatus">已选 0 个</span>
-									<button class="btn success" id="saveSelectedBtn" type="button" disabled>保存</button>
+									<button class="btn success" id="saveSelectedBtn" type="button" disabled>Save</button>
 									<button class="btn secondary" id="closeBestCFBtn" type="button">Off</button>
 								</div>
 							</div>
@@ -16515,7 +16515,7 @@
 			<!-- 按钮组 -->
 			<div class="api-buttons">
 				<button type="button" class="btn btn-verify-api" id="btnVerifyAPI"
-					onclick="verifyAPIOptimize()">可用性验证</button>
+					onclick="verifyAPIOptimize()">Verify Availability</button>
 				<button type="button" class="btn btn-append-api" id="btnAppendAPI" onclick="appendAPIToCustom()"
 					disabled>追加API</button>
 				<button type="button" class="btn btn-append-results" id="btnAppendResults"
@@ -16568,7 +16568,7 @@
 
 			<div class="api-buttons chain-proxy-buttons">
 				<button type="button" class="btn btn-verify-api" id="btnVerifyChainProxy"
-					onclick="verifyChainProxyAvailability()" disabled>可用性验证</button>
+					onclick="verifyChainProxyAvailability()" disabled>Verify Availability</button>
 				<button type="button" class="btn btn-chain-add" id="btnAddChainProxy" onclick="addChainProxyNode()"
 					disabled>添加</button>
 				<button type="button" class="btn btn-close-api" onclick="closeChainProxyModal()">Cancel</button>
@@ -17155,7 +17155,7 @@
 							<pre>https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt#优选IP_API</pre>
 						</div>
 						<div class="auth-example-item">
-							<h4>优选订阅生成器</h4>
+							<h4>Subscription Generator URL</h4>
 							<pre>sub://sub.cmliussss.net#CM优选订阅</pre>
 						</div>
 					</div>
@@ -19170,8 +19170,8 @@
 				const dateHtml = parsedHeading.dateText
 					? `<span class="changelog-version-date">${escapeMarkdownHtml(parsedHeading.dateText)}</span>`
 					: '';
-				const latestTagHtml = isLatest ? '<span class="changelog-version-latest">最新版本</span>' : '';
-				const currentTagHtml = isCurrent ? '<span class="changelog-version-current">当前版本</span>' : '';
+				const latestTagHtml = isLatest ? '<span class="changelog-version-latest">Latest Version</span>' : '';
+				const currentTagHtml = isCurrent ? '<span class="changelog-version-current">Current Version</span>' : '';
 				const versionMetaHtml = (latestTagHtml || currentTagHtml)
 					? `<div class="changelog-version-meta">${latestTagHtml}${currentTagHtml}</div>`
 					: '';
@@ -19456,7 +19456,7 @@
 
 		function renderUI() {
 			// 标题
-			document.getElementById('pageTitle').textContent = (currentConfig.优选订阅生成?.SUBNAME || 'edgetunnel') + ' 设置页面';
+			document.getElementById('pageTitle').textContent = (currentConfig.优选订阅生成?.SUBNAME || currentConfig.subGen?.SUBNAME || 'edgetunnel') + ' Settings';
 
 			// 检查 CF 使用情况并显示模块
 			const cfUsageModule = document.getElementById('cfUsageModule');
@@ -20937,8 +20937,8 @@
 			} catch (error) {
 				// 如果文本过长，显示错误提示
 				console.error('二维码生成失败:', error);
-				showToast('链接过长，无法生成二维码。联系项目作者修复问题。', 'error');
-				container.innerHTML = '<div style="padding:20px;text-align:center;color:#f44336;">二维码生成失败：内容过长</div>';
+				showToast('Link too long to generate QR code.', 'error');
+				container.innerHTML = '<div style="padding:20px;text-align:center;color:#f44336;">QR code generation failed: content too long</div>';
 			}
 		}
 
@@ -22008,11 +22008,11 @@
 
 			if (isSimpleMode) {
 				cardContainer.classList.add('simple-mode');
-				btn.textContent = '🚀 我是高手！我就要折腾！';
+				btn.textContent = '🚀 Advanced Mode';
 				localStorage.setItem('userMode', 'simple');
 			} else {
 				cardContainer.classList.remove('simple-mode');
-				btn.textContent = '🐣 我是小白！我想简单点！';
+				btn.textContent = '🐣 Simple Mode';
 				localStorage.setItem('userMode', 'expert');
 			}
 
