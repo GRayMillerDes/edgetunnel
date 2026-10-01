@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>配置错误</title>
+    <title>Configuration Error - edgetunnel</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,7 @@
             overflow: hidden
         }
 
-        /* 通用动画 */
+        /* Animations */
         @keyframes blurOverlayAppear {
             0% {
                 opacity: 0;
@@ -69,7 +69,7 @@
             }
         }
 
-        /* 背景和遮罩层 */
+        /* Background and Overlay */
         #background-iframe {
             position: fixed;
             top: 0;
@@ -95,7 +95,7 @@
             opacity: 0
         }
 
-        /* 通用容器包装器 */
+        /* Page Wrapper */
         .page-wrapper {
             position: fixed;
             top: 0;
@@ -110,7 +110,7 @@
             overflow-y: auto
         }
 
-        /* 通用卡片容器 */
+        /* Card Container */
         .card-container {
             background: #ef4444;
             -webkit-backdrop-filter: blur(20px);
@@ -136,7 +136,7 @@
             animation: gradientShift 3s ease infinite
         }
 
-        /* 页面标题和图标 */
+        /* Header and Icon */
         .page-header {
             margin-bottom: 50px;
             text-align: center
@@ -170,8 +170,8 @@
             letter-spacing: -0.5px
         }
 
-        /* 表单样式 */
-        /* 按钮样式 */
+        /* Form Styles */
+        /* Button Styles */
         .btn {
             padding: 16px 20px;
             border: 0;
@@ -225,7 +225,7 @@
             pointer-events: none
         }
 
-        /* 页脚提示 */
+        /* Footer Hint */
         .footer-hint {
             margin-top: 50px;
             font-size: 13px;
@@ -245,8 +245,8 @@
             color: #fff
         }
 
-        /* 模态框 */
-        /* 响应式设计 - 平板 */
+        /* Modal */
+        /* Responsive - Tablet */
         @media(max-width:768px) {
             .page-wrapper {
                 padding: 20px 16px;
@@ -307,7 +307,7 @@
             }
         }
 
-        /* 响应式设计 - 手机 */
+        /* Responsive - Mobile */
         @media(max-width:480px) {
             .page-wrapper {
                 padding: 12px;
@@ -338,7 +338,7 @@
             }
         }
 
-        /* 响应式设计 - 横屏 */
+        /* Responsive - Landscape */
         @media(max-height:600px) and (orientation:landscape) {
             .page-wrapper {
                 padding: 20px;
@@ -386,7 +386,7 @@
             text-align: center
         }
 
-        /* 错误消息样式 */
+        /* Error Message Styles */
         @keyframes fadeInError {
             from {
                 opacity: 0;
@@ -399,7 +399,7 @@
             }
         }
 
-        /* 错误消息副文本 */
+        /* Error Subtext */
         .error-sub {
             display: block;
             margin-top: 24px;
@@ -422,10 +422,10 @@
 </head>
 
 <body>
-    <!-- 毛玻璃效果遮盖层 -->
+    <!-- Frosted Glass Overlay -->
     <div id="blur-overlay"></div>
 
-    <!-- 登录框容器 -->
+    <!-- Container -->
     <div class="page-wrapper">
         <div class="card-container">
             <div class="page-header">

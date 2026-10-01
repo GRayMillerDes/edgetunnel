@@ -119,7 +119,7 @@
 			opacity: 0
 		}
 
-		/* 通用容器包装器 */
+		/* Page Wrapper */
 		.page-wrapper {
 			position: fixed;
 			top: 0;
@@ -387,7 +387,7 @@
 			color: #1f2937
 		}
 
-		/* 响应式设计 - 平板 */
+		/* Responsive - Tablet */
 		@media(max-width:768px) {
 			.page-wrapper {
 				padding: 20px 16px;
@@ -453,7 +453,7 @@
 			}
 		}
 
-		/* 响应式设计 - 手机 */
+		/* Responsive - Mobile */
 		@media(max-width:480px) {
 			.page-wrapper {
 				padding: 12px;
@@ -484,7 +484,7 @@
 			}
 		}
 
-		/* 响应式设计 - 横屏 */
+		/* Responsive - Landscape */
 		@media(max-height:600px) and (orientation:landscape) {
 			.page-wrapper {
 				padding: 20px;
@@ -617,17 +617,17 @@
 			}
 		}
 
-		/* 按钮全宽样式 */
+		/* Full Width Button Style */
 		.btn-full-width {
 			width: 100%;
 		}
 
-		/* 错误消息隐藏状态 */
+		/* Hidden Error State */
 		.login-error-hidden {
 			display: none;
 		}
 
-		/* 模态框按钮容器 */
+		/* Modal Button Container */
 		.modal-button-container {
 			display: flex;
 			flex-direction: row;
@@ -649,7 +649,7 @@
 			}
 		}
 
-		/* 科技感按钮倒计时及光效 */
+		/* Tech Button Countdown and Glow */
 		.btn-tech-upgrade {
 			position: relative;
 			overflow: hidden;
@@ -670,7 +670,7 @@
 			z-index: 2;
 		}
 
-		/* 扫描影效 */
+		/* Scan Shadow Effect */
 		.btn-tech-upgrade::after {
 			content: '';
 			position: absolute;
@@ -721,13 +721,13 @@
 </head>
 
 <body>
-	<!-- 背景内容 -->
+	<!-- Background Content -->
 	<iframe id="background-iframe" src="/" title="Background Content"></iframe>
 
-	<!-- 毛玻璃效果遮盖层 -->
+	<!-- Frosted Glass Overlay -->
 	<div id="blur-overlay"></div>
 
-	<!-- 登录框容器 -->
+	<!-- Container -->
 	<div class="page-wrapper">
 		<div class="card-container">
 			<div class="page-header">
@@ -775,12 +775,12 @@
 			const irModal = document.getElementById('ir-modal');
 			const redirectUrl = 'https://github.com/bia-pain-bache/BPB-Worker-Panel';
 
-			// ====== 客户端鉴权检查（带防循环重定向保护）======
-			// Worker 服务端 302 重定向在某些场景下不可靠（浏览器缓存、
-			// SameSite=Strict 时序、UA 头差异等），需要客户端侧二次兜底。
-			// 但如果 /admin 的鉴权检查持续失败（根因在 Worker 侧），
-			// 无条件重定向会造成 /login → /admin → /login 死循环。
-			// 因此用 sessionStorage 计数器限制自动重定向最多 1 次。
+			// ====== Client Auth Check (With Loop Protection) ======
+			// Worker server-side 302 redirect may be unreliable in some cases (browser cache,
+			// SameSite=Strict timing, UA header differences), requiring client-side fallback.
+			// However, if /admin auth check fails continuously (root cause on Worker side),
+			// unconditional redirect causes a /login → /admin → /login dead loop.
+			// Therefore, limit automatic redirects to at most once using sessionStorage.
 			const REDIRECT_KEY = '_auth_auto_redirect';
 			const autoRedirectCount = parseInt(sessionStorage.getItem(REDIRECT_KEY) || '0', 10);
 			const allowAutoRedirect = autoRedirectCount < 1;
@@ -798,17 +798,17 @@
 					});
 					clearTimeout(authTimeoutId);
 
-					// 200 = Worker 端鉴权通过（cookie 有效），跳转 /admin
+					// 200 = Worker auth passed (cookie valid), redirect to /admin
 					if (authResponse.ok) {
 						sessionStorage.setItem(REDIRECT_KEY, '1');
 						window.location.replace('/admin');
 						return;
 					}
 				} catch (_) {
-					// 超时或网络失败，安全兜底：继续展示登录页
+					// Timeout or network failure: safe fallback, keep displaying login page
 				}
 			} else {
-				// 已达到自动重定向上限，清除计数器，允许用户手动登录
+				// Max auto-redirect count reached, clear counter to allow manual login
 				sessionStorage.removeItem(REDIRECT_KEY);
 			}
 
@@ -841,7 +841,7 @@
 					const modalContent = document.getElementById('ir-modal-content');
 					let contentHTML = '';
 
-					// 按钮通用样式
+					// Button common styles
 					const primaryBtnStyle = 'display: inline-block; background: linear-gradient(135deg, #faab41 0%, #f6821f 100%); color: white; text-decoration: none; padding: 16px 32px; border-radius: 14px; font-weight: 700; font-size: 17px; box-shadow: 0 8px 16px rgba(246, 130, 31, 0.2); transition: all 0.3s ease; border: none; cursor: pointer; margin: 10px; outline: none; position: relative; overflow: hidden;';
 					const secondaryBtnStyle = 'display: inline-block; background: #f9fafb; color: #9ca3af; text-decoration: none; padding: 14px 28px; border-radius: 14px; font-weight: 400; font-size: 14px; transition: all 0.3s ease; border: none; cursor: pointer; margin: 10px; outline: none;';
 
@@ -850,15 +850,15 @@
 						contentHTML = `
 							<div style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 40px 20px; text-align: center;">
 								<div style="font-size: 64px; margin-bottom: 20px; animation: shake 2s infinite;">🔒</div>
-								<h2 style="color: white; font-size: 32px; font-weight: 800; letter-spacing: -1px; margin: 0;">👋 地域访问限制</h2>
+								<h2 style="color: white; font-size: 32px; font-weight: 800; letter-spacing: -1px; margin: 0;">👋 Geographic Access Restriction</h2>
 							</div>
 							<div style="padding: 40px; text-align: left; line-height: 1.8;">
 								<div style="background: #fdf2f2; border-left: 4px solid #dc2626; padding: 20px; border-radius: 12px; margin-bottom: 30px;">
-									<p style="font-size: 16px; color: #991b1b; margin: 0;">很遗憾，由于网络环境差异，此项目暂不适配伊朗用户的使用体验。为了给您提供更稳定、更优化的服务，我们强烈建议您使用由伊朗本地群组维护的专业项目。</p>
+									<p style="font-size: 16px; color: #991b1b; margin: 0;">Unfortunately, due to network differences, this project is not optimized for users in Iran. For a more stable experience, we recommend using specialized projects maintained by local communities.</p>
 								</div>
 								<div class="modal-button-container">
-									<button id="accept-suggestion" style="${primaryBtnStyle}">⭐ 使用 BPB-Worker-Panel</button>
-									<button id="stay-current" style="${secondaryBtnStyle}">继续使用当前项目</button>
+									<button id="accept-suggestion" style="${primaryBtnStyle}">⭐ Use BPB-Worker-Panel</button>
+									<button id="stay-current" style="${secondaryBtnStyle}">Continue with current project</button>
 								</div>
 							</div>
 						`;
@@ -901,17 +901,17 @@
 					modalContent.innerHTML = contentHTML;
 					irModal.classList.add('show');
 
-					// 倒计时逻辑
+					// Countdown logic
 					const acceptBtn = document.getElementById('accept-suggestion');
 					const stayBtn = document.getElementById('stay-current');
 
-					// 注入动画进度条
+					// Inject animated progress bar
 					const progressBar = document.createElement('div');
 					progressBar.className = 'btn-countdown-line';
 					acceptBtn.classList.add('btn-tech-upgrade');
 					acceptBtn.appendChild(progressBar);
 
-					// 8秒倒计时自动跳转
+					// 5-second countdown auto-redirect
 					const redirectTimer = setTimeout(() => {
 						window.location.href = redirectUrl;
 					}, 5000);
@@ -947,14 +947,14 @@
 			const errorMsg = document.getElementById('errorMsg');
 			const passwordInput = document.getElementById('password');
 
-			// 清除之前的错误信息
+			// Clear previous error message
 			errorMsg.classList.add('login-error-hidden');
 
-			// 按钮加载状态
+			// Button loading state
 			loginBtn.disabled = true;
 			loginBtn.classList.add('btn-loading');
 
-			// 用户主动登录，重置自动重定向计数器
+			// User manually logging in, reset auto-redirect counter
 			sessionStorage.removeItem('_auth_auto_redirect');
 
 			try {
@@ -967,15 +967,15 @@
 					redirect: 'manual'
 				});
 
-				// ====== 关键修复：处理 Worker 的 auth cookie 短路逻辑 ======
-				// Worker /login 路由在处理 POST 之前会先检查 auth cookie：
+				// ====== Handle Worker auth cookie short-circuit logic ======
+				// Worker /login route checks auth cookie before processing POST:
 				//   if (authCookie == MD5MD5(...)) return 302 → /admin
-				// 如果 cookie 仍然有效（如从 /admin 刷新被踢回 /login 的场景），
-				// Worker 不会处理 POST，而是直接返回 302。
-				// fetch 默认会自动跟随 302 → GET /admin → 返回 HTML → 前端误判为"密码错误"。
-				// 使用 redirect: 'manual' 拦截 302，直接跳转 /admin。
+				// If cookie is still valid (e.g. kicked back from /admin refresh),
+				// Worker does not process POST, but returns 302 directly.
+				// fetch follows 302 by default → GET /admin → returns HTML → misidentified as password error.
+				// Use redirect: manual to intercept 302 and redirect to /admin directly.
 				if (response.type === 'opaqueredirect') {
-					// Worker 返回了重定向 = auth cookie 仍然有效，直接进 /admin
+					// Worker returned redirect = auth cookie still valid, enter /admin directly
 					window.location.replace('/admin');
 					return;
 				}
@@ -984,16 +984,16 @@
 					const contentType = response.headers.get('content-type');
 
 					if (contentType && contentType.includes('application/json')) {
-						// 返回的是JSON，说明登录成功
+						// Response is JSON, login successful
 						const data = await response.json();
 						if (data.success) {
-							// 登录成功，使用 replace 避免留下 /login 在浏览器历史中
+							// Login successful, use replace to avoid leaving /login in browser history
 							window.location.replace('/admin');
 						}
 					} else {
-						// 返回的是HTML，说明密码错误
-						// 注意：不清理 cookie —— auth cookie 是 HttpOnly，JS 无法操作；
-						// 清理非 HttpOnly cookie 会破坏其他功能状态，弊大于利
+						// Response is HTML, indicating incorrect password
+						// Note: do not clear cookies - auth cookie is HttpOnly and cannot be accessed via JS;
+						// clearing non-HttpOnly cookies may break other features.
 						errorMsg.textContent = 'Incorrect password, please try again';
 						errorMsg.classList.remove('login-error-hidden');
 						passwordInput.focus();
@@ -1004,11 +1004,11 @@
 					errorMsg.classList.remove('login-error-hidden');
 				}
 			} catch (error) {
-				console.error('登录错误:', error);
+				console.error('Login error:', error);
 				errorMsg.textContent = 'Network error, please check your connection';
 				errorMsg.classList.remove('login-error-hidden');
 			} finally {
-				// 恢复按钮状态
+				// Restore button state
 				loginBtn.disabled = false;
 				loginBtn.classList.remove('btn-loading');
 			}
