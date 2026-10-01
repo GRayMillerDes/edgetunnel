@@ -1,4 +1,4 @@
-﻿const Version = '2026-09-22 20:01:17';
+const Version = '2026-09-22 20:01:17';
 let config_JSON, cachedSocks5Whitelist = null, debugLogEnabled = false;
 let socks5Whitelist = ['*tapecontent.net', '*cloudatacdn.com', '*loadshare.org', '*cdn-centaurus.com', 'scholar.google.com'];
 const pagesStaticUrl = 'https://edt-pages.github.io';
@@ -169,7 +169,7 @@ export default {
 										const value = await tlsSocket.read();
 										if (!value) break;
 										if (value.byteLength === 0) continue;
-										responseBuffer = concatBytes(responseBuffer, value);
+										responseBuffer = combineByteChunks(responseBuffer, value);
 										if (headerEndIndex === -1) {
 											const crlfcrlf = responseBuffer.findIndex((_, i) => i < responseBuffer.length - 3 && responseBuffer[i] === 0x0d && responseBuffer[i + 1] === 0x0a && responseBuffer[i + 2] === 0x0d && responseBuffer[i + 3] === 0x0a);
 											if (crlfcrlf !== -1) {
@@ -649,7 +649,7 @@ async function handleXhttpRequest(request, yourUUID, proxyContext = {}) {
 
 	let socket;
 	try {
-		socket = await forwardataTCP(initialpacket.hostname, initialpacket.port, initialpacket.rawData, placeholderWS, initialpacket.respHeader, remoteConnWrapper, yourUUID, request, proxyContext, initialpacket.protocol === 'trojan', initialpacket.rawData, true);
+		socket = await forwardataTCP(initialpacket.hostname, initialpacket.port, initialpacket.rawData, placeholderWS, initialpacket.respHeader, remoteConnWrapper, yourUUID, request, proxyContext, initialpacket.protocol === 'trojan', initialpacket.rawInitialData, true);
 	} catch (err) {
 		log(`[xHTTP-Pipe] Connection failed: ${err?.message || err}`);
 		clean(err);
@@ -745,7 +745,7 @@ function handleXhttpUdpRequest(initialpacket, reader, request, proxyContext, res
 				if (initialpacket.protocol === 'trojan') {
 					trojanUDPContext.targetHost = initialpacket.hostname;
 					trojanUDPContext.targetPort = initialpacket.port;
-					if (trojanUDPContext.proxyAddress) await forwardTrojanUdpData(initialpacket.rawData, xhttpBridge, trojanUDPContext, request);
+					if (trojanUDPContext.proxyAddress) await forwardTrojanUdpData(initialpacket.rawInitialData, xhttpBridge, trojanUDPContext, request);
 				}
 				if (!(initialpacket.protocol === 'trojan' && trojanUDPContext.proxyAddress) && initialpacket.rawData?.byteLength) {
 					if (initialpacket.protocol === 'trojan') await forwardTrojanUdpData(initialpacket.rawData, xhttpBridge, trojanUDPContext, request);
@@ -872,7 +872,7 @@ async function readXhttpInitialPacket(reader, token) {
 				isUDP: cmd === 2,
 				rawData: data.subarray(headerLen),
 				respHeader: new Uint8Array([data[0], 0]),
-				rawData: null,
+				rawInitialData: null,
 			}
 		};
 	};
@@ -933,7 +933,7 @@ async function readXhttpInitialPacket(reader, token) {
 				port,
 				isUDP,
 				rawData: data.subarray(dataOffset),
-				rawData: data,
+				rawInitialData: data,
 				respHeader: null,
 			}
 		};
@@ -1330,7 +1330,7 @@ async function handleWsRequest(request, yourUUID, url, proxyContext = {}) {
 		const chunk = toUint8Array(data);
 		if (!chunk.byteLength) return;
 		if (wsSpeedTestRequestCache.byteLength + chunk.byteLength > WS_SPEED_TEST_REQ_LIMIT) throw new Error('WS local speed-test request is too large');
-		wsSpeedTestRequestCache = concatBytes(wsSpeedTestRequestCache, chunk);
+		wsSpeedTestRequestCache = combineByteChunks(wsSpeedTestRequestCache, chunk);
 
 		while (wsSpeedTestRequestCache.byteLength) {
 			const headerEnd = findHTTPRequestHeaderEnd(wsSpeedTestRequestCache);
@@ -1447,7 +1447,7 @@ async function handleWsRequest(request, yourUUID, url, proxyContext = {}) {
 				const inboundDecryptor = {
 					async input(dataChunk) {
 						const chunk = toUint8Array(dataChunk);
-						if (chunk.byteLength > 0) inboundStatus.buffer = concatBytes(inboundStatus.buffer, chunk);
+						if (chunk.byteLength > 0) inboundStatus.buffer = combineByteChunks(inboundStatus.buffer, chunk);
 						if (!inboundStatus.hasSalt) {
 							const initSuccess = await initInboundDecryptState();
 							if (!initSuccess) return [];
@@ -2028,7 +2028,7 @@ function toUint8Array(data) {
 	return new Uint8Array(data || 0);
 }
 
-function concatBytes(...chunkList) {
+function combineByteChunks(...chunkList) {
 	if (!chunkList || chunkList.length === 0) return new Uint8Array(0);
 	const chunks = chunkList.map(toUint8Array);
 	const total = chunks.reduce((sum, c) => sum + c.byteLength, 0);
@@ -2042,7 +2042,7 @@ async function forwardTrojanUdpData(chunk, webSocket, context, request) {
 	const currentChunk = toUint8Array(chunk);
 	if (context?.proxyAddress) return forwardTrojanUdpProxyData(currentChunk, webSocket, context, request);
 	const cacheChunk = context?.cache instanceof Uint8Array ? context.cache : new Uint8Array(0);
-	const input = cacheChunk.byteLength ? concatBytes(cacheChunk, currentChunk) : currentChunk;
+	const input = cacheChunk.byteLength ? combineByteChunks(cacheChunk, currentChunk) : currentChunk;
 	let cursor = 0;
 
 	while (cursor < input.byteLength) {
@@ -2086,7 +2086,7 @@ async function forwardTrojanUdpData(chunk, webSocket, context, request) {
 		const dnsResponseContext = { cache: new Uint8Array(0) };
 		await forwardataudp(tcpdnsQuery, webSocket, null, request, (dnsRespChunk) => {
 			const currentResponseChunk = toUint8Array(dnsRespChunk);
-			const responseInput = dnsResponseContext.cache.byteLength ? concatBytes(dnsResponseContext.cache, currentResponseChunk) : currentResponseChunk;
+			const responseInput = dnsResponseContext.cache.byteLength ? combineByteChunks(dnsResponseContext.cache, currentResponseChunk) : currentResponseChunk;
 			const responseFrameList = [];
 			let responseCursor = 0;
 			while (responseCursor + 2 <= responseInput.byteLength) {
@@ -2127,7 +2127,7 @@ async function deriveSsMasterKey(passwordText, keyLen) {
 			const input = new Uint8Array(prev.byteLength + pwBytes.byteLength);
 			input.set(prev, 0); input.set(pwBytes, prev.byteLength);
 			prev = new Uint8Array(await crypto.subtle.digest('MD5', input));
-			result = concatBytes(result, prev);
+			result = combineByteChunks(result, prev);
 		}
 		return result.slice(0, keyLen);
 	})();
@@ -2144,7 +2144,7 @@ async function deriveSsSessionKey(config, masterKey, salt, usages) {
 	const subKey = new Uint8Array(config.keyLen);
 	let prev = new Uint8Array(0), written = 0, counter = 1;
 	while (written < config.keyLen) {
-		const input = concatBytes(prev, ssSubkeyInfo, new Uint8Array([counter]));
+		const input = combineByteChunks(prev, ssSubkeyInfo, new Uint8Array([counter]));
 		prev = new Uint8Array(await crypto.subtle.sign('HMAC', prkHmacKey, input));
 		const copyLen = Math.min(prev.byteLength, config.keyLen - written);
 		subKey.set(prev.subarray(0, copyLen), written);
@@ -3262,7 +3262,7 @@ async function httpsConnect(targetHost, targetPort, initialData, tcpConnector, p
 		while (headerEndIndex === -1 && bytesRead < 8192) {
 			const value = await tlsSocket.read();
 			if (!value) throw new Error("HTTPS proxy closed connection before returning CONNECT response");
-			responseBuffer = concatBytes(responseBuffer, value);
+			responseBuffer = combineByteChunks(responseBuffer, value);
 			bytesRead = responseBuffer.length;
 			const crlfcrlf = responseBuffer.findIndex((_, i) => i < responseBuffer.length - 3 && responseBuffer[i] === 0x0d && responseBuffer[i + 1] === 0x0a && responseBuffer[i + 2] === 0x0d && responseBuffer[i + 3] === 0x0a);
 			if (crlfcrlf !== -1) headerEndIndex = crlfcrlf + 4;
@@ -4662,7 +4662,7 @@ async function sstpConnect(proxy, targetHost, targetPort, tcpConnector) {
 				const flush = () => {
 					if (!pendingLength) return;
 					if (!streamController) throw new Error('SSTP readable stream is not ready');
-					streamController.enqueue(pendingChunks.length === 1 ? pendingChunks[0] : concatBytes(...pendingChunks));
+					streamController.enqueue(pendingChunks.length === 1 ? pendingChunks[0] : combineByteChunks(...pendingChunks));
 					pendingChunks = [];
 					pendingLength = 0;
 					writer.write(buildTcpFrame(0x10)).catch(() => { });
@@ -4724,7 +4724,7 @@ async function sstpConnect(proxy, targetHost, targetPort, tcpConnector) {
 					frames.push(buildTcpFrame(0x18, segment));
 					sequenceNumber = (sequenceNumber + segment.byteLength) >>> 0;
 				}
-				await writer.write(concatBytes(...frames));
+				await writer.write(combineByteChunks(...frames));
 			},
 			close() {
 				return writer.write(buildTcpFrame(0x11)).catch(() => { });
@@ -5741,7 +5741,7 @@ async function readConfigJson(env, hostname, userID, UA = "Mozilla/5.0", resetCo
 				max: 100000,
 			},
 		}
-	};
+	});
 
 	try {
 		let configJSON = await env.KV.get('config.json');
