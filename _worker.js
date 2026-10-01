@@ -335,7 +335,8 @@ export default {
 				} else if (requestPath === 'sub') {//Handle subscription endpoint requests
 					const subToken = await MD5MD5(host + userID), isBestSubGenerator = ['1', 'true'].includes(env.BEST_SUB) && url.searchParams.get('host') === 'example.com' && url.searchParams.get('uuid') === '00000000-0000-4000-8000-000000000000' && UA.toLowerCase().includes('tunnel (https://github.com/' + signatureDict[1] + '/edge');
 					const requestToken = url.searchParams.get('token');
-					const isClientSubRequest = requestToken === subToken;
+					const hostTokens = await Promise.all(Array.from(new Set([host, url.hostname, ...(hosts || [])])).map(h => MD5MD5(h + userID)));
+					const isClientSubRequest = hostTokens.includes(requestToken);
 					const currentDayIndex = Math.floor(Date.now() / 86400000);
 					const subConverterTokenSeed = base64SecretEncode(subToken, userID);
 					const [todaySubConverterToken, yesterdaySubConverterToken] = await Promise.all([
@@ -515,7 +516,7 @@ export default {
 								});
 						}
 
-						if (subType === 'mixed' && (!ua.includes('mozilla') || url.searchParams.has('b64') || url.searchParams.has('base64'))) subContent = btoa(subContent);
+						if (subType === 'mixed' && (!ua.includes('mozilla') || url.searchParams.has('b64') || url.searchParams.has('base64'))) subContent = safeBtoa(subContent);
 
 						if (subType === 'singbox') {
 							subContent = await patchSingboxSubscription(subContent, config_JSON);
@@ -4821,6 +4822,37 @@ function base64SecretDecode(encoded, secret) {
 
 	const decoder = new TextDecoder();
 	return decoder.decode(data);
+}
+
+function safeBtoa(str) {
+	try {
+		const bytes = new TextEncoder().encode(str);
+		let binary = '';
+		const len = bytes.byteLength;
+		for (let i = 0; i < len; i += 8192) {
+			binary += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+		}
+		return btoa(binary);
+	} catch (e) {
+		return btoa(unescape(encodeURIComponent(str)));
+	}
+}
+
+function safeAtob(encoded) {
+	try {
+		const binary = atob(encoded);
+		const bytes = new Uint8Array(binary.length);
+		for (let i = 0; i < binary.length; i++) {
+			bytes[i] = binary.charCodeAt(i);
+		}
+		return new TextDecoder().decode(bytes);
+	} catch (e) {
+		try {
+			return decodeURIComponent(escape(atob(encoded)));
+		} catch {
+			return atob(encoded);
+		}
+	}
 }
 
 function getTransportProtocolConfig(config = {}) {
