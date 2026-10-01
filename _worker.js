@@ -2,6 +2,37 @@ const Version = '2026-09-22 20:01:17';
 let config_JSON, cachedSocks5Whitelist = null, debugLogEnabled = false;
 let socks5Whitelist = ['*tapecontent.net', '*cloudatacdn.com', '*loadshare.org', '*cdn-centaurus.com', 'scholar.google.com'];
 const pagesStaticUrl = 'https://edt-pages.github.io';
+
+async function serveStaticPage(pathname, env, request, status = 200) {
+	if (env?.ASSETS && typeof env.ASSETS.fetch === 'function') {
+		const cleanPath = pathname.startsWith('/') ? pathname : '/' + pathname;
+		const candidates = [cleanPath, `${cleanPath}/index.html`];
+		for (const cand of candidates) {
+			try {
+				const assetUrl = new URL(cand, request ? request.url : 'http://localhost');
+				const res = await env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+				if (res && res.status < 400) {
+					const headers = new Headers(res.headers);
+					headers.set('Content-Type', 'text/html;charset=utf-8');
+					headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+					headers.set('Pragma', 'no-cache');
+					headers.set('Expires', '0');
+					return new Response(res.body, { status, statusText: res.statusText, headers });
+				}
+			} catch (_) {}
+		}
+	}
+	try {
+		const fallbackRes = await fetch(pagesStaticUrl + (pathname.startsWith('/') ? pathname : '/' + pathname));
+		const headers = new Headers(fallbackRes.headers);
+		headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+		headers.set('Pragma', 'no-cache');
+		headers.set('Expires', '0');
+		return new Response(fallbackRes.body, { status, statusText: fallbackRes.statusText, headers });
+	} catch (err) {
+		return new Response(`Error loading page: ${err.message}`, { status: 500, headers: { 'Content-Type': 'text/plain' } });
+	}
+}
 ///////////////////////////////////////////////////////Global constants and utility functions///////////////////////////////////////////////
 const WS_MAX_EARLY_DATA_BYTES = 8 * 1024, WS_MAX_EARLY_DATA_HEADER_LENGTH = Math.ceil(WS_MAX_EARLY_DATA_BYTES * 4 / 3) + 4;
 const UPLINK_BATCH_TARGET_BYTES = 20 * 1024, UPLINK_QUEUE_MAX_BYTES = 16 * 1024 * 1024, UPLINK_QUEUE_MAX_ITEMS = 4096;
@@ -80,8 +111,8 @@ export default {
 			log(`[xHTTP] Request matched: ${url.pathname}${url.search}`);
 			return await handleXhttpRequest(request, userID, proxyContext);
 		} else {
-			if (url.protocol === 'http:') return Response.redirect(url.href.replace(`http://${url.hostname}`, `https://${url.hostname}`), 301);
-			if (!adminPassword) return fetch(pagesStaticUrl + '/noADMIN').then(r => { const headers = new Headers(r.headers); headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate'); headers.set('Pragma', 'no-cache'); headers.set('Expires', '0'); return new Response(r.body, { status: 404, statusText: r.statusText, headers }) });
+			if (url.protocol === 'http:' && !url.hostname.includes('localhost') && !url.hostname.includes('127.0.0.1')) return Response.redirect(url.href.replace(`http://${url.hostname}`, `https://${url.hostname}`), 301);
+			if (!adminPassword) return serveStaticPage('/noADMIN', env, request, 404);
 			if (env.KV && typeof env.KV.get === 'function') {
 				const caseSensitivePath = url.pathname.slice(1);
 				if (caseSensitivePath === encryptionKey && encryptionKey !== "Do not modify this default key; change it by adding the KEY environment variable if needed") {//Quick subscription
@@ -103,7 +134,7 @@ export default {
 							return response;
 						}
 					}
-					return fetch(pagesStaticUrl + '/login');
+					return serveStaticPage('/login', env, request);
 				} else if (requestPath === 'admin' || requestPath.startsWith('admin/')) {//Verify authentication cookie and serve admin dashboard
 					const cookies = request.headers.get('Cookie') || '';
 					const authCookie = cookies.split(';').find(c => c.trim().startsWith('auth='))?.split('=')[1];
@@ -296,7 +327,7 @@ export default {
 					}
 
 					ctx.waitUntil(recordRequestLog(env, request, clientIP, 'Admin_Login', config_JSON));
-					return fetch(pagesStaticUrl + '/admin' + url.search);
+					return serveStaticPage('/admin', env, request);
 				} else if (requestPath === 'logout' || uuidRegex.test(requestPath)) {//Clear session cookie and redirect to login page
 					const response = new Response("Redirecting...", { status: 302, headers: { 'Location': '/login' } });
 					response.headers.set('Set-Cookie', 'auth=; Path=/; Max-Age=0; HttpOnly');
@@ -499,7 +530,7 @@ export default {
 					const authCookie = cookies.split(';').find(c => c.trim().startsWith('auth='))?.split('=')[1];
 					if (authCookie && authCookie == await MD5MD5(UA + encryptionKey + adminPassword)) return fetch(new Request('https://speed.cloudflare.com/locations', { headers: { 'Referer': 'https://speed.cloudflare.com/' } }));
 				} else if (requestPath === 'robots.txt') return new Response('User-agent: *\nDisallow: /', { status: 200, headers: { 'Content-Type': 'text/plain; charset=UTF-8' } });
-			} else if (!envUUID) return fetch(pagesStaticUrl + '/noKV').then(r => { const headers = new Headers(r.headers); headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate'); headers.set('Pragma', 'no-cache'); headers.set('Expires', '0'); return new Response(r.body, { status: 404, statusText: r.statusText, headers }) });
+			} else if (!envUUID) return serveStaticPage('/noKV', env, request, 404);
 		}
 
 		let camouflagePageUrl = env.URL || 'nginx';
