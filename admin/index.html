@@ -4608,6 +4608,22 @@
 			box-shadow: 0 2px 10px rgba(6, 182, 212, 0.4);
 		}
 
+		.btn-refresh-sub {
+			background: linear-gradient(135deg, #10b981 0, #059669 100%);
+			color: #fff;
+			box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+		}
+
+		.btn-refresh-sub:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+		}
+
+		.btn-refresh-sub:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 10px rgba(16, 185, 129, 0.4);
+		}
+
 		.btn-api-optimize {
 			background: linear-gradient(135deg, #3b82f6 0, #1d4ed8 100%);
 			color: #fff;
@@ -10356,6 +10372,7 @@
 
 		html.dark-mode .btn-secondary,
 		html.dark-mode .btn-qrcode,
+		html.dark-mode .btn-refresh-sub,
 		html.dark-mode .user-type-btn {
 			background: rgba(30, 41, 59, 0.75) !important;
 			border: 1px solid rgba(139, 92, 246, 0.35) !important;
@@ -10368,6 +10385,7 @@
 
 		html.dark-mode .btn-secondary:hover,
 		html.dark-mode .btn-qrcode:hover,
+		html.dark-mode .btn-refresh-sub:hover,
 		html.dark-mode .user-type-btn:hover {
 			border-color: rgba(168, 85, 247, 0.7) !important;
 			box-shadow: 0 0 16px rgba(168, 85, 247, 0.35) !important;
@@ -10696,6 +10714,7 @@
 					<div class="input-wrapper subscription-link-wrapper">
 						<input type="text" id="subLink" title="Adaptive Subscription" readonly>
 						<div class="btn-container">
+							<button type="button" class="btn btn-refresh-sub" id="refreshSubBtn" onclick="refreshSubscriptionLinks()" title="Refresh subscription links from latest configuration">🔄 Refresh</button>
 							<button type="button" class="btn btn-qrcode" onclick="showQRCode('subLink')">📱 QR Code</button>
 							<button type="button" class="btn btn-primary"
 								onclick="copySubscription('subLink')">Copy Sub</button>
@@ -19676,14 +19695,7 @@
 			}
 
 			// 订阅链接
-			const token = currentConfig.优选订阅生成?.TOKEN;
-			const host = window.location.host;
-			const link = currentConfig.LINK;
-			document.getElementById('LinkURL').value = currentConfig.LINK;
-			document.getElementById('subLink').value = `https://${host}/sub?token=${token}`;
-			document.getElementById('base64Link').value = `https://${host}/sub?token=${token}&b64`;
-			document.getElementById('clashLink').value = `https://${host}/sub?token=${token}&clash`;
-			document.getElementById('singboxLink').value = `https://${host}/sub?token=${token}&sb`;
+			updateSubscriptionLinksFromConfig();
 
 			// 编辑订阅生成
 			const local = currentConfig.优选订阅生成?.local ?? true;
@@ -21086,6 +21098,58 @@
 			});
 		}
 
+		function updateSubscriptionLinksFromConfig() {
+			if (!currentConfig) return;
+			const token = currentConfig.优选订阅生成?.TOKEN || currentConfig.subGen?.TOKEN || '';
+			const host = window.location.host;
+			if (currentConfig.LINK) {
+				const linkEl = document.getElementById('LinkURL');
+				if (linkEl) linkEl.value = currentConfig.LINK;
+			}
+			const subLinkEl = document.getElementById('subLink');
+			const b64LinkEl = document.getElementById('base64Link');
+			const clashLinkEl = document.getElementById('clashLink');
+			const sbLinkEl = document.getElementById('singboxLink');
+
+			if (subLinkEl) subLinkEl.value = `https://${host}/sub?token=${token}`;
+			if (b64LinkEl) b64LinkEl.value = `https://${host}/sub?token=${token}&b64`;
+			if (clashLinkEl) clashLinkEl.value = `https://${host}/sub?token=${token}&clash`;
+			if (sbLinkEl) sbLinkEl.value = `https://${host}/sub?token=${token}&sb`;
+		}
+
+		async function refreshSubscriptionLinks() {
+			const btn = document.getElementById('refreshSubBtn');
+			const origText = btn ? btn.innerHTML : '🔄 Refresh';
+			try {
+				if (btn) {
+					btn.disabled = true;
+					btn.innerHTML = '🔄 Updating...';
+				}
+				// 重新从服务器获取最新配置以更新订阅链接
+				const response = await fetch('/admin/config.json?_t=' + Date.now(), {
+					method: 'GET',
+					headers: {
+						'Cache-Control': 'no-cache, no-store, must-revalidate',
+						'Pragma': 'no-cache',
+						'Expires': '0'
+					}
+				});
+				if (!response.ok) throw new Error('拉取配置失败');
+				const latestConfig = await response.json();
+				currentConfig = latestConfig;
+				originalConfig = JSON.parse(JSON.stringify(latestConfig));
+				updateSubscriptionLinksFromConfig();
+				showToast('🔄 订阅链接与节点配置已成功更新！', 'success');
+			} catch (error) {
+				showToast('更新订阅链接失败: ' + error.message, 'error');
+			} finally {
+				if (btn) {
+					btn.disabled = false;
+					btn.innerHTML = origText;
+				}
+			}
+		}
+
 		function handleTLSFragmentChange(type) {
 			const shadowrocket = document.getElementById('tlsFragmentShadowrocket');
 			const happ = document.getElementById('tlsFragmentHapp');
@@ -21802,6 +21866,7 @@
 
 				if (!response.ok) throw new Error('保存失败');
 				showToast('✅ Configuration saved. Please update your subscription to fetch latest nodes!', 'success');
+				updateSubscriptionLinksFromConfig();
 				modifiedSections.delete(section);
 				updateButtonStates();
 			} catch (error) {
