@@ -34,10 +34,11 @@ async function serveStaticPage(pathname, env, request, status = 200) {
 	}
 }
 ///////////////////////////////////////////////////////Global constants and utility functions///////////////////////////////////////////////
-const WS_MAX_EARLY_DATA_BYTES = 8 * 1024, WS_MAX_EARLY_DATA_HEADER_LENGTH = Math.ceil(WS_MAX_EARLY_DATA_BYTES * 4 / 3) + 4;
-const UPLINK_BATCH_TARGET_BYTES = 20 * 1024, UPLINK_QUEUE_MAX_BYTES = 16 * 1024 * 1024, UPLINK_QUEUE_MAX_ITEMS = 4096;
-const DOWNLINK_GRAIN_PACKET_BYTES = 32 * 1024, DOWNLINK_GRAIN_TAIL_THRESHOLD = 512, DOWNLINK_GRAIN_LOW_WATERMARK_BYTES = Math.max(4096, DOWNLINK_GRAIN_TAIL_THRESHOLD * 12), DOWNLINK_GRAIN_MAX_WAIT_ROUNDS = 4;
-let tcpConcurrentDialCount = 2, proxyConcurrentDialCount = 1, preloadRaceDialEnabled = false;
+// Optimized for Cloudflare Free Tier (reduces JS iteration cycles & memory copy overhead)
+const WS_MAX_EARLY_DATA_BYTES = 16 * 1024, WS_MAX_EARLY_DATA_HEADER_LENGTH = Math.ceil(WS_MAX_EARLY_DATA_BYTES * 4 / 3) + 4;
+const UPLINK_BATCH_TARGET_BYTES = 64 * 1024, UPLINK_QUEUE_MAX_BYTES = 16 * 1024 * 1024, UPLINK_QUEUE_MAX_ITEMS = 2048;
+const DOWNLINK_GRAIN_PACKET_BYTES = 64 * 1024, DOWNLINK_GRAIN_TAIL_THRESHOLD = 1024, DOWNLINK_GRAIN_LOW_WATERMARK_BYTES = Math.max(8192, DOWNLINK_GRAIN_TAIL_THRESHOLD * 8), DOWNLINK_GRAIN_MAX_WAIT_ROUNDS = 2;
+let tcpConcurrentDialCount = 1, proxyConcurrentDialCount = 1, preloadRaceDialEnabled = false;
 ///////////////////////////////////////////////////////Anti-detection signatures///////////////////////////////////////////////
 const signatureDict = [
 	(Proxy.name + "IP").toUpperCase(),
